@@ -5,7 +5,7 @@ export default function HomePage({ articles }) {
   return <ArticleList articles={articles}></ArticleList>;
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const { data: articles } = await axios.get("articles");
 
   return {
