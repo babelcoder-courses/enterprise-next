@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "oderwat.indent-rainbow",
+    "esbenp.prettier-vscode",
+    "jpoissonnier.vscode-styled-components",
+    "dbaeumer.vscode-eslint",
+    "orta.vscode-jest",
+    "donjayamanne.githistory",
+    "eamodio.gitlens"
+  ]
+}
