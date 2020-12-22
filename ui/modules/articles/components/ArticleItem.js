@@ -41,8 +41,8 @@ export default function ArticleItem({ id, title, body, image, user }) {
       <Card className={classes.card} onClick={navigateToArticleDetails}>
         <CardActionArea className={classes.cardArea}>
           <CardHeader
-            avatar={<Avatar src={user.image}></Avatar>}
-            title={user.name}
+            avatar={<Avatar src={user?.image}></Avatar>}
+            title={user?.name}
           ></CardHeader>
           <CardMedia className={classes.media} image={image} title={title} />
           <CardContent>

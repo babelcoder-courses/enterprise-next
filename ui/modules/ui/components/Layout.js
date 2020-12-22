@@ -25,6 +25,7 @@ import {
   Audiotrack,
   FlightTakeoff,
   House,
+  Add,
 } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import RouterLink from "next/link";
@@ -135,8 +136,11 @@ export default function Layout({ children }) {
     setOpen(false);
   };
 
-  const navigateToCategory = (category) => () =>
+  const navigateToCategory = (category) => () => {
     router.push(`/articles?category=${category}`);
+  };
+
+  const navigateToNewArticle = () => router.push("/articles/new");
 
   return (
     <div className={classes.root}>
@@ -201,6 +205,12 @@ export default function Layout({ children }) {
               </ListItem>
             );
           })}
+          <ListItem button onClick={navigateToNewArticle}>
+            <ListItemIcon>
+              <Add color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Create Article" />
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
