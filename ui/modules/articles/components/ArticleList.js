@@ -1,13 +1,14 @@
+import React from "react";
+import { Grid } from "@material-ui/core";
+
 import ArticleItem from "./ArticleItem";
 
-function ArticleList({ articles }) {
+export default function ArticleList({ articles }) {
   return (
-    <ul>
+    <Grid container spacing={3}>
       {articles.map((article) => (
-        <ArticleItem key={article.id} {...article}></ArticleItem>
+        <ArticleItem key={article.id} {...article} />
       ))}
-    </ul>
+    </Grid>
   );
 }
-
-export default ArticleList;
