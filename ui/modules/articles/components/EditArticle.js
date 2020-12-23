@@ -1,30 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 import ArticleForm from "./ArticleForm";
-import axios from "lib/axios";
+import * as actions from "../actions";
 
 export default function EditArticle() {
-  const [article, setArticle] = useState(null);
+  const dispatch = useDispatch();
+  const article = useSelector((state) => state.articles.items[0]);
   const router = useRouter();
   const {
     query: { id },
   } = router;
 
-  const loadArticle = async () => {
-    const res = await axios.get(`/articles/${id}`);
-
-    setArticle(res.data);
-  };
-
-  const editArticle = async (article) => {
-    await axios.patch(`/articles/${id}`, article);
-
-    router.push(`/articles/${id}`);
+  const editArticle = (article) => {
+    dispatch(actions.editArticle(id, article));
   };
 
   useEffect(() => {
-    if (id) loadArticle();
+    if (id) dispatch(actions.fetchArticle(id));
   }, [id]);
 
   return (

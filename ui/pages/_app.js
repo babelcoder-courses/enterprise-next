@@ -5,8 +5,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline, useMediaQuery } from "@material-ui/core";
 import createTheme from "modules/ui/theme";
 import Layout from "modules/ui/components/Layout";
+import { wrapper } from "modules/store";
 
-export default function MyApp(props) {
+function MyApp(props) {
   const { Component, pageProps } = props;
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = createTheme(prefersDarkMode);
@@ -43,3 +44,5 @@ MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
 };
+
+export default wrapper.withRedux(MyApp);

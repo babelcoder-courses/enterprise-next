@@ -7,7 +7,6 @@ import {
   Toolbar,
   List,
   CssBaseline,
-  Typography,
   Divider,
   IconButton,
   ListItem,
@@ -29,6 +28,8 @@ import {
 } from "@material-ui/icons";
 import { useRouter } from "next/router";
 import RouterLink from "next/link";
+
+import FlashMessage from "./FlashMessage";
 
 const drawerWidth = 240;
 
@@ -216,6 +217,7 @@ export default function Layout({ children }) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Container maxWidth="md">{children}</Container>
+        <FlashMessage />
       </main>
     </div>
   );

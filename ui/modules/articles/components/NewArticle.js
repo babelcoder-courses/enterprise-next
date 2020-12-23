@@ -1,15 +1,13 @@
-import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 import ArticleForm from "./ArticleForm";
-import axios from "lib/axios";
+import * as actions from "../actions";
 
 export default function NewArticle() {
-  const router = useRouter();
+  const dispatch = useDispatch();
 
   const createArticle = async (article) => {
-    await axios.post("/articles", article);
-
-    router.push("/articles");
+    dispatch(actions.createArticle(article));
   };
 
   return (
