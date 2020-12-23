@@ -96,7 +96,10 @@ export default function ArticleForm({
             helperText={errors.image?.message || ""}
             error={!!errors.image}
           ></TextField>
-          <FormControl className={classes.selectControl}>
+          <FormControl
+            className={classes.selectControl}
+            focused={article?.category}
+          >
             <InputLabel id="article-category">
               Select article category
             </InputLabel>
