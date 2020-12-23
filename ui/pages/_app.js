@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "modules/ui/theme";
+import { CssBaseline, useMediaQuery } from "@material-ui/core";
+import createTheme from "modules/ui/theme";
 import Layout from "modules/ui/components/Layout";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const theme = createTheme(prefersDarkMode);
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
