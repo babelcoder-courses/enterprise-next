@@ -21,15 +21,15 @@ export default function EditArticle() {
     if (id) dispatch(actions.fetchArticle(id));
   }, [id]);
 
+  if (!article) return null;
+
   return (
-    article && (
-      <ArticleForm
-        type="EDIT"
-        submitText="Update"
-        title="Edit Article"
-        article={article}
-        onSubmit={editArticle}
-      ></ArticleForm>
-    )
+    <ArticleForm
+      type="EDIT"
+      submitText="Update"
+      title="Edit Article"
+      article={article}
+      onSubmit={editArticle}
+    ></ArticleForm>
   );
 }
