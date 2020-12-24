@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Drawer,
@@ -29,7 +30,9 @@ import {
 import { useRouter } from "next/router";
 import RouterLink from "next/link";
 
+import * as authActions from "modules/auth/actions";
 import FlashMessage from "./FlashMessage";
+import AdminLink from "modules/auth/components/AdminLink";
 
 const drawerWidth = 240;
 
@@ -54,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: 36,
+  },
+  loginButton: {
+    marginLeft: "auto",
   },
   hide: {
     display: "none",
@@ -124,10 +130,14 @@ const paths = [
 ];
 
 export default function Layout({ children }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const router = useRouter();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const isLoggedIn = useSelector((state) => !!state.auth.accessToken);
+
+  const logout = () => dispatch(authActions.logout());
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -142,6 +152,14 @@ export default function Layout({ children }) {
   };
 
   const navigateToNewArticle = () => router.push("/articles/new");
+
+  useEffect(() => {
+    dispatch(authActions.loadTokenFromStorage());
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) dispatch(authActions.loadProfile());
+  }, [isLoggedIn]);
 
   return (
     <div className={classes.root}>
@@ -169,6 +187,26 @@ export default function Layout({ children }) {
               Articles
             </Button>
           </RouterLink>
+          <AdminLink href="/admin/dashboard" color="textSecondary" passHref>
+            <Button variant="text" color="inherit">
+              Admin
+            </Button>
+          </AdminLink>
+          {isLoggedIn ? (
+            <Button
+              color="inherit"
+              className={clsx(classes.loginButton)}
+              onClick={logout}
+            >
+              Logout
+            </Button>
+          ) : (
+            <RouterLink href="/auth/login" color="textSecondary" passHref>
+              <Button color="inherit" className={clsx(classes.loginButton)}>
+                Login
+              </Button>
+            </RouterLink>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer

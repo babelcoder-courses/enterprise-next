@@ -1,4 +1,17 @@
 {
+  "users": [
+    {
+      "email": "babelcoder@gmail.com",
+      "password": "$2a$10$ssT2Ooo0rYpc0Xn2E2N/jOTSwuKYrE6a2Fvu2dE4nXoDm65VwGyee",
+      "id": 1
+    }
+  ],
+  "profile": {
+    "id": 1,
+    "email": "babelcoder@gmail.com",
+    "name": "Babel Coder",
+    "role": "admin"
+  },
   "articles": [
     {
       "id": 1,
