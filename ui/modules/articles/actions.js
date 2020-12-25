@@ -25,6 +25,7 @@ const fetchArticles = (category) => async (dispatch) => {
   try {
     const path = category ? `/articles?category=${category}` : "/articles";
     const { data: articles } = await axios.get(path);
+    console.log(articles);
     dispatch({ type: FETCH_ARTICLES_SUCCESS, payload: { articles } });
   } catch (ex) {
     dispatch({ type: FETCH_ARTICLES_FAILURE, payload: { error: ex.message } });

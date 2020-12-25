@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "analyze": "ANALYZE=true yarn build"
+    "analyze": "ANALYZE=true yarn build",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^1.2.0",
@@ -22,11 +23,16 @@
     "react-hook-form": "^6.13.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0",
     "yup": "^0.32.8"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.19.0",
+    "babel-jest": "^26.6.3",
     "babel-plugin-import": "^1.13.3",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
     "redux-devtools-extension": "^2.13.8"
   }
 }
